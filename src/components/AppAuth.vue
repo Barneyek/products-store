@@ -1,57 +1,54 @@
 <template>
-  <div>
-    <div class="heading">
-      <h1 class="text text-large">Sign In</h1>
-      <p class="text text-normal">
-        New user?
-        <span><a href="#" class="text text-links">Create an account</a></span>
-      </p>
+  <div class="section">
+    <div class="container">
+      <div class="row">
+        <div class="col-12 col-xl-8">
+          <h5 class="font-weight-normal margin-bottom-30">Sign in</h5>
+          <vee-form
+            :validation-schema="loginSchema"
+            @submit="login"
+          >
+            <div class="input-control">
+              <label for="email" class="required">Email Address</label>
+              <vee-field
+                v-model="email"
+                type="email"
+                name="email"
+                id="email"
+                class="input-field"
+                placeholder="Email Address"
+              />
+              <ErrorMessage class="input-error" name="email" />
+            </div>
+            <div class="input-control">
+              <label for="password" class="required dupa">Password</label>
+              <vee-field
+                v-model="password"
+                type="password"
+                name="password"
+                id="password"
+                class="input-field"
+                placeholder="Password"
+              />
+              <ErrorMessage class="input-error" name="password" />
+            </div>
+            <div class="form__submit">
+              <button
+                type="submit"
+                name="submit"
+                class="button button-md button-dark margin-top-20t"
+              >
+                Sign in
+              </button>
+            </div>
+          </vee-form>
+        </div>
+      </div>
     </div>
-    <vee-form
-      :validation-schema="loginSchema"
-      @submit="login"
-      class="form"
-    >
-      <div class="input-control">
-        <label for="email" class="input-label" hidden>Email Address</label>
-        <vee-field
-          v-model="email"
-          type="email"
-          name="email"
-          id="email"
-          class="input-field"
-          placeholder="Email Address"
-        />
-        <ErrorMessage class="input-error" name="email" />
-      </div>
-      <div class="input-control">
-        <label for="password" class="input-label" hidden>Password</label>
-        <vee-field
-          v-model="password"
-          type="password"
-          name="password"
-          id="password"
-          class="input-field"
-          placeholder="Password"
-        />
-        <ErrorMessage class="input-error" name="password" />
-      </div>
-      <div class="form__submit">
-        <!--        @todo in future -->
-<!--          <router-link to="/start/forget"> class="text text-links">Forgot Password</router-link>-->
-        <input
-          type="submit"
-          name="submit"
-          class="input-submit"
-          value="Sign In"
-        />
-      </div>
-    </vee-form>
   </div>
 </template>
 
 <script>
-// import axios from "axios";
 import { useAuthStore } from "@/stores/auth.store";
 
 export default {
