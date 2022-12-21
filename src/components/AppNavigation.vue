@@ -8,7 +8,14 @@
         <!-- Menu -->
         <ul class="header-menu">
           <li class="m-item">
-            <a class="m-link" href="#">Basic</a>
+            <router-link class="m-link" :to="{ name: 'home' }"
+              >Home</router-link
+            >
+          </li>
+          <li class="m-item">
+            <router-link :to="{ name: 'manage' }" class="m-link">
+              Add Product
+            </router-link>
           </li>
           <li class="m-item">
             <a

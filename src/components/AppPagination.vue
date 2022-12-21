@@ -10,7 +10,7 @@
         </li>
         <li class="page-item"><button class="page-link">...</button></li>
         <li class="page-item">
-          <div class="page-link">{{ numPages }}</div>
+          <div class="page-link"></div>
         </li>
         <!--        <li-->
         <!--          v-for="item in Math.ceil(data.length / perPage)"-->
@@ -35,36 +35,29 @@ export default {
   name: "AppPagination",
   props: ["products", "pageSize"],
   setup(props) {
-    const { products, pageSize } = toRefs(props);
+    const { products } = toRefs(props);
     let currentIndex = ref(0);
-
     const totalPages = computed(() => products.value.length);
     const currentPage = computed(() => currentIndex.value + 1);
-    const numPages = computed(() =>
-      Math.ceil(totalPages.value / pageSize.value)
-    );
-    const range = computed(() =>
+    const rowsPerPage = ref(10);
+
+    const paginatedArray = computed(() =>
       products.value.slice(
-        currentIndex.value * pageSize.value,
-        (currentIndex.value + 1) * pageSize.value
+        (currentPage.value - 1) * rowsPerPage.value,
+        currentPage.value * rowsPerPage.value
       )
     );
-    const gotoNext = () => {
-      console.log(range)
-      currentIndex.value = Math.min(currentIndex.value + 1, numPages.value - 1);
-    };
-    const gotoPrev = () => {
-      currentIndex.value = Math.max(0, currentIndex.value - 1);
-    };
+    const numberOfPages = computed(() =>
+      Math.ceil((paginatedArray.value.length || 0) / rowsPerPage.value)
+    );
 
     return {
       currentIndex,
       currentPage,
       totalPages,
-      numPages,
-      range,
-      gotoNext,
-      gotoPrev,
+      paginatedArray,
+      numberOfPages,
+
     };
   },
 };

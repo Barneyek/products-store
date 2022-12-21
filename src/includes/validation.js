@@ -9,8 +9,11 @@ import {
   required,
   min,
   max,
+  url,
   alpha_spaces as alphaSpaces,
   email,
+  min_value as minVal,
+  numeric,
   confirmed,
   not_one_of as excluded,
 } from "@vee-validate/rules";
@@ -25,6 +28,9 @@ export default {
     defineRule("alpha_spaces", alphaSpaces);
     defineRule("min", min);
     defineRule("max", max);
+    defineRule("url", url);
+    defineRule("numeric", numeric);
+    defineRule("min_value", minVal);
     defineRule("email", email);
     defineRule("password_mismatch", confirmed);
     defineRule("excluded", excluded);
@@ -39,6 +45,7 @@ export default {
           email: `${context.field} must be a valid email address`,
           excluded: `You cannot use the selected value for this field ${context.field}. Enter another one.`,
           password_mismatch: "The passwords do not match.",
+          url: `${context.field} must be a  valid URL.`,
         };
         const message = messages[context.rule.name]
           ? messages[context.rule.name]

@@ -21,7 +21,7 @@
               <ErrorMessage class="input-error" name="email" />
             </div>
             <div class="input-control">
-              <label for="password" class="required dupa">Password</label>
+              <label for="password" class="required">Password</label>
               <vee-field
                 v-model="password"
                 type="password"

@@ -65,7 +65,7 @@
         </div>
       </div>
       <!-- end row -->
-      <pagination :products="products" :pageSize="10" />
+      <pagination :products="products" />
     </div>
     <!-- end container -->
   </div>
