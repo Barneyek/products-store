@@ -63,5 +63,29 @@ export const useProductsStore = defineStore({
           alertStore.error(error.join());
         });
     },
+    async removeProduct(id) {
+      console.log("test", id);
+      const alertStore = useAlertStore();
+      await fetch(`https://api.escuelajs.co/api/v1/products/${id}`, {
+        method: "DELETE",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${auth.user?.access_token}`,
+        },
+      })
+        .then(async (response) => {
+          const data = await response.json();
+          if (!response.ok) {
+            const error = (data && data.message) || response.statusText;
+            return Promise.reject(error);
+          } else {
+            alertStore.success("Product was removed.");
+          }
+        })
+        .catch((error) => {
+          alertStore.error(error.join());
+        });
+    },
   },
 });

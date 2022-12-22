@@ -118,7 +118,7 @@ export default {
     onMounted(() => {
       productsStore.getCategories();
     });
-    console.log(categories)
+
     return { categories };
   },
   data() {
@@ -135,7 +135,7 @@ export default {
         title: "required|min:3|max:64",
         price: "required|min_value:1|numeric",
         categoryId: "required",
-        // images: "required|url",
+        images: "required|url",
       },
     };
   },

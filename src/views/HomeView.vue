@@ -51,14 +51,16 @@
               </h6>
               <div class="price-and-cart">
                 <div class="price">
-                  <span>${{ el.price }}</span>
+                  <span>${{ el.price }}</span> {
                 </div>
                 <div class="add-to-cart">
                   <a class="button-text-1" href="#">Add to Cart</a>
                 </div>
               </div>
-              <div class="add-to-wishlist">
-                <a href="#"><i class="far fa-heart"></i></a>
+              <div class="add-to-wishlist" @click="removeProduct(el.id)">
+                <a href="#">
+                  <i class="fa-solid fa-trash"></i>
+                </a>
               </div>
             </div>
           </div>
@@ -75,6 +77,7 @@ import Pagination from "@/components/AppPagination.vue";
 
 import { storeToRefs } from "pinia";
 import { useProductsStore } from "@/stores/products.store";
+import { router } from "@/router";
 // import { useProductPaginationStore } from "@/stores/pagination.store";
 
 const productsStore = useProductsStore();
@@ -83,4 +86,8 @@ const { products } = storeToRefs(productsStore);
 
 productsStore.getProducts();
 
+const removeProduct = async (id) => {
+  await productsStore.removeProduct(id);
+  await productsStore.getProducts();
+};
 </script>
