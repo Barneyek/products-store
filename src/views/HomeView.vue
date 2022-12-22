@@ -77,7 +77,6 @@ import Pagination from "@/components/AppPagination.vue";
 
 import { storeToRefs } from "pinia";
 import { useProductsStore } from "@/stores/products.store";
-import { router } from "@/router";
 // import { useProductPaginationStore } from "@/stores/pagination.store";
 
 const productsStore = useProductsStore();
